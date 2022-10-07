@@ -122,6 +122,9 @@ function App() {
             )}
           </div>
         </div>
+        <div className="text-slate-100 font-bold text-xl absolute bottom-10 tracking-widest">
+          Made by Daniel from MRGA
+        </div>
       </div>
   )
 }
