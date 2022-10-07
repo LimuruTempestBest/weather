@@ -68,7 +68,7 @@ function App() {
           <div>
             {data && (
               <div className="text-slate-100 font-semibold md:font-bold text-sm md:text-xl tracking-wider text-slate-100">
-                FELLS LIKE  {data.current.feelslike_c} °
+                FEELS LIKE  {data.current.feelslike_c} °
               </div>
             )}
           </div>
@@ -96,7 +96,7 @@ function App() {
           )}
           {data && (
             <div className="text-lime-400 font-bold tracking-widest text-sm md:text-xl">
-              HUMDITY: {data.current.humidity}%
+              HUMIDITY: {data.current.humidity}%
             </div>
           )}
           <div className="text-lime-400 font-bold tracking-widest text-sm md:text-xl">
