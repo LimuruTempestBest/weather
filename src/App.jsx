@@ -122,7 +122,7 @@ function App() {
             )}
           </div>
         </div>
-        <div className="text-slate-100 font-bold text-xl absolute bottom-10 tracking-widest">
+        <div className="text-slate-100 font-semibold md:font-bold text-sm md:text-xl absolute bottom-10 tracking-widest">
           Made by Daniel from MRGA
         </div>
       </div>
