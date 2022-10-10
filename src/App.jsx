@@ -10,12 +10,20 @@ function App() {
   const [pm, setPm] = useState();
   const [time, setTime] = useState();
   const [select, setSelect] = useState(2);
+  const [forecast, setForecast] = useState();
 
   useEffect(() => {
-    axios("http://api.weatherapi.com/v1/forecast.json?key=a14e5ecd9e6447adb5d72811220210 &q=johor&days=5&aqi=yes&alerts=yes").then((res) =>
+    axios("http://api.weatherapi.com/v1/current.json?key=a14e5ecd9e6447adb5d72811220210 &q=Johor&aqi=yes").then((res) =>
       setData(res.data),
     );
   }, []);
+
+  useEffect(() => {
+    axios("http://api.weatherapi.com/v1/forecast.json?key=a14e5ecd9e6447adb5d72811220210 &q=Johor&days=5&aqi=no&alerts=no").then((res) =>
+      setForecast(res.data),
+    );
+  }, []);
+
 
 
   const [clock, setClock] = useState();
@@ -54,7 +62,7 @@ function App() {
 
 
 
-  return (data &&
+  return (
     <div className="flex justify-center items-center w-full h-screen bg-stone-800 flex flex-col select-none p-10" >
       <div className="text-slate-100 font-bold text-sm md:text-xl absolute bottom-10 tracking-widest">
         Made by Daniel from MRGA
@@ -161,7 +169,7 @@ function App() {
                 )}
               </div>
             </div>
-            <div className="flex flex-row items-center gap-2 mt-2">
+            <div className="flex flex-row items-center gap-2 mt-4">
               <button onClick={() => setSelect(1)}>
                 <Icon className="text-lg md:text-2xl text-slate-100 hover:text-rose-400 duration-200" icon="bi:arrow-right-square-fill" />
               </button>
@@ -170,31 +178,92 @@ function App() {
               </div>
             </div>
           </div>) : (
+
+
           <div>
-            <div className="text-lime-400 text-xl md:text-5xl font-semibold tracking-widest">
+            <div className="text-lg md:text-2xl font-semibold md:font-bold text-slate-100 tracking-wider">
+              {clock}
+            </div>
+            <div className="text-lime-400 text-xl md:text-5xl font-semibold tracking-wider mt-2">
               WEATHER FORECAST
             </div>
-            <div>
-              <div className="flex flex-col gap-2 mt-4 md:mt-8 tracking-widest">
-                {data.forecast.forecastday.map((day) => (
-                  <div className="flex items-center gap-5">
-                    <span className="text-lime-400 font-semibold text-sm md:text-2xl">{moment(day.date_epoch * 1000).format('ddd, MMM D')}</span>
-                    <span className="text-rose-400 font-semibold text-sm md:text-2xl">{day.day.condition.text}</span>
-                    <img alt={day.day.condition.text} src={day.day.condition.icon.replace('64x64', '128x128')} className="w-16 h-16" />
-                  </div>
-                ))}
-              </div>
-              <div className="flex flex-row items-center gap-2 mt-2">
-                <button onClick={() => setSelect(2)}>
-                  <Icon className="text-lg md:text-2xl text-slate-100 hover:text-rose-400 duration-200" icon="bi:arrow-left-square-fill" />
-                </button>
-                <div className="text-slate-100 text-xs md:text-lg font-semibold tracking-wider">
-                  BACK TO LAST PAGE
+            <div className="flex flex-row items-center gap-5 md:gap-10 mt-10 md:mt-16">
+              {data && (
+                <div className="text-rose-400 font-semibold tracking-widest text-xs md:text-xl">
+                  {forecast.forecast.forecastday[1].date}
                 </div>
+              )}
+              {data && (
+                <div className="text-slate-400 font-bold tracking-widest text-xs md:text-xl ">
+                  {forecast.forecast.forecastday[1].day.condition.text}
+                </div>
+              )}
+              {data && (
+                <div className="text-slate-400 font-bold tracking-widest text-xs md:text-xl">
+                  <img className="w-8 md:w-10" src={forecast.forecast.forecastday[1].day.condition.icon} />
+                </div>
+              )}
+            </div>
+            <div className="flex flex-row items-center gap-5 md:gap-10 mt-5">
+              {data && (
+                <div className="text-rose-400 font-semibold tracking-widest text-xs md:text-xl">
+                  {forecast.forecast.forecastday[2].date}
+                </div>
+              )}
+              {data && (
+                <div className="text-slate-400 font-bold tracking-widest text-xs md:text-xl">
+                  {forecast.forecast.forecastday[2].day.condition.text}
+                </div>
+              )}
+              {data && (
+                <div className="text-slate-400 font-bold tracking-widest text-xs md:text-xl">
+                  <img className="w-8 md:w-10" src={forecast.forecast.forecastday[2].day.condition.icon} />
+                </div>
+              )}
+            </div>
+            <div className="flex flex-row items-center gap-5 md:gap-10 mt-5">
+              {data && (
+                <div className="text-rose-400 font-semibold tracking-widest text-xs md:text-xl">
+                  {forecast.forecast.forecastday[3].date}
+                </div>
+              )}
+              {data && (
+                <div className="text-slate-400 font-bold tracking-widest text-xs md:text-xl">
+                  {forecast.forecast.forecastday[3].day.condition.text}
+                </div>
+              )}
+              {data && (
+                <div className="text-slate-400 font-bold tracking-widest text-xs md:text-xl">
+                  <img className="w-8 md:w-10" src={forecast.forecast.forecastday[3].day.condition.icon} />
+                </div>
+              )}
+            </div>
+            <div className="flex flex-row items-center gap-5 md:gap-10 mt-5">
+              {data && (
+                <div className="text-rose-400 font-semibold tracking-widest text-xs md:text-xl">
+                  {forecast.forecast.forecastday[4].date}
+                </div>
+              )}
+              {data && (
+                <div className="text-slate-400 font-bold tracking-widest text-xs md:text-xl">
+                  {forecast.forecast.forecastday[4].day.condition.text}
+                </div>
+              )}
+              {data && (
+                <div className="text-slate-400 font-bold tracking-widest text-xs md:text-xl">
+                  <img className="w-8 md:w-10" src={forecast.forecast.forecastday[4].day.condition.icon} />
+                </div>
+              )}
+            </div>
+            <div className="flex flex-row items-center gap-2 mt-10">
+              <button onClick={() => setSelect(2)}>
+                <Icon className="text-lg md:text-2xl text-slate-100 hover:text-rose-400 duration-200" icon="bi:arrow-left-square-fill" />
+              </button>
+              <div className="text-slate-100 text-xs md:text-lg font-semibold tracking-wider">
+                BACK TO LAST PAGE
               </div>
             </div>
           </div>
-
         )}
 
         <div className="absolute bottom-5 left-5 flex flex-col text-lg md:text-2xl gap-3 md:gap-5 text-slate-100">
@@ -211,6 +280,7 @@ function App() {
       </div>
     </div>
   )
+
 }
 
 export default App
