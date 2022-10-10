@@ -13,13 +13,13 @@ function App() {
   const [forecast, setForecast] = useState();
 
   useEffect(() => {
-    axios("http://api.weatherapi.com/v1/current.json?key=a14e5ecd9e6447adb5d72811220210 &q=Johor&aqi=yes").then((res) =>
+    axios("https://api.weatherapi.com/v1/current.json?key=a14e5ecd9e6447adb5d72811220210 &q=Johor&aqi=yes").then((res) =>
       setData(res.data),
     );
   }, []);
 
   useEffect(() => {
-    axios("http://api.weatherapi.com/v1/forecast.json?key=a14e5ecd9e6447adb5d72811220210 &q=Johor&days=5&aqi=no&alerts=no").then((res) =>
+    axios("https://api.weatherapi.com/v1/forecast.json?key=a14e5ecd9e6447adb5d72811220210 &q=Johor&days=5&aqi=no&alerts=no").then((res) =>
       setForecast(res.data),
     );
   }, []);
